@@ -1,0 +1,21 @@
+.gradient-custom-3 {
+background: #2a2b2a;
+}
+.gradient-custom-4 {
+background: #28a9f3;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1em;
+}
+.grid-container2 {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.small-font {
+    font-size: small;
+}
+.error {
+    color: rgb(211, 0, 0);
+}

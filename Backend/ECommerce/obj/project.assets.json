@@ -4716,11 +4716,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\20112\\Desktop\\ECommerce\\ECommerce.csproj",
+      "projectUniqueName": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\ECommerce.csproj",
       "projectName": "ECommerce",
-      "projectPath": "C:\\Users\\20112\\Desktop\\ECommerce\\ECommerce.csproj",
+      "projectPath": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\ECommerce.csproj",
       "packagesPath": "C:\\Users\\20112\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\20112\\Desktop\\ECommerce\\obj\\",
+      "outputPath": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\20112\\AppData\\Roaming\\NuGet\\NuGet.Config",
