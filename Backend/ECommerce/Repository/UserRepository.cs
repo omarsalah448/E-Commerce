@@ -27,6 +27,11 @@ namespace ECommerce.Repository
             }
         }
 
+        public User? GetById(int id)
+        {
+                return context.Users.FirstOrDefault(u => u.Id == id);
+        }
+
         public int Post(UserDTO userDTO)
         {
             User user = new User

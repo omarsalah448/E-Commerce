@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RetypePassword } from '../../../Validations/RetypePassword.validator';
+import { User } from '../../../Models/User';
+import { RetypePassword } from '../../Validations/retypePassword.validator';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +16,7 @@ import { RetypePassword } from '../../../Validations/RetypePassword.validator';
 export class SignUpComponent implements OnInit {
   form: FormGroup;
   countryCodes: any;
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private http: HttpClient) {
     let passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
     let nameRegex = "^[a-z ,.'-]+$";
     let emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}";
@@ -54,9 +57,6 @@ export class SignUpComponent implements OnInit {
       {country: "United States (+1)", code: "+1"}
     ]; 
   }
-  submit() {
-    alert(this.form.get("CountryCode")?.value);
-  }
   get FirstName() {
     return this.form.get("FirstName");
   }
@@ -77,5 +77,21 @@ export class SignUpComponent implements OnInit {
   }
   get RetypePassword() {
     return this.form.get("RetypePassword");
+  }
+
+  signUp() {
+    alert("in sign up");
+    let user: User = new User;
+    user.FirstName = this.FirstName?.value;
+    user.LastName = this.LastName?.value;
+    user.Email = this.Email?.value;
+    user.CountryCode = this.CountryCode?.value;
+    user.MobileNumber = this.MobileNumber?.value;
+    user.Password = this.Password?.value;
+    let URL: string = `${environment.URL}/api/User`;
+    this.http.post<User>(URL, user).subscribe(user => {
+      console.log(user);
+    });
+    alert("finished");
   }
 }

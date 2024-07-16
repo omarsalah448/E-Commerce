@@ -4,6 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS Policy
+var CORSPolicy = "MyCORSPolicy";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: CORSPolicy, policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 // Add services to the container.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 // add DBContext
@@ -27,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(CORSPolicy);
 
 app.UseAuthorization();
 

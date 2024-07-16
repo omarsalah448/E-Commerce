@@ -7,6 +7,7 @@ namespace ECommerce.Repository
     public interface IUserRepository
     {
         public List<User> Get();
+        public User? GetById(int id);
         public int Post(UserDTO userDTO);
     }
 }
