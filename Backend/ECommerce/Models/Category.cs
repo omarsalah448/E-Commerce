@@ -3,9 +3,8 @@
     public class Category
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public required string Name { get; set; }
         // setting a relationship with product table
-        public int ProductId { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

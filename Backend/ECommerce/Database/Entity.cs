@@ -8,11 +8,11 @@ namespace ECommerce.Database
     {
         public Entity(DbContextOptions<Entity> options) : base(options) { }
 
-        public DbSet<Category> Categories;
-        public DbSet<Company> Companies;
-        public DbSet<Product> Products;
-        public DbSet<Purchase> Purchases;
-        public DbSet<User> Users;
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().OwnsMany(p => p.Reviews);

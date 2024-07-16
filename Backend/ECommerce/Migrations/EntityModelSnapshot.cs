@@ -31,14 +31,12 @@ namespace ECommerce.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Company", b =>
@@ -56,14 +54,12 @@ namespace ECommerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Product", b =>
@@ -87,6 +83,7 @@ namespace ECommerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
@@ -101,7 +98,7 @@ namespace ECommerce.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Purchase", b =>
@@ -125,7 +122,7 @@ namespace ECommerce.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Purchase");
+                    b.ToTable("Purchases");
                 });
 
             modelBuilder.Entity("ECommerce.Models.User", b =>
@@ -137,23 +134,24 @@ namespace ECommerce.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PurchaseId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Product", b =>
@@ -188,6 +186,7 @@ namespace ECommerce.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("UserId")
+                                .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("ProductID", "Id");
@@ -235,7 +234,7 @@ namespace ECommerce.Migrations
 
                             b1.HasKey("PurchaseId", "Id");
 
-                            b1.ToTable("Purchase_PurchaseProducts");
+                            b1.ToTable("Purchases_PurchaseProducts");
 
                             b1.WithOwner()
                                 .HasForeignKey("PurchaseId");
@@ -258,7 +257,7 @@ namespace ECommerce.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("User");
+                            b1.ToTable("Users");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
@@ -285,7 +284,7 @@ namespace ECommerce.Migrations
 
                                     b2.HasKey("CartUserId", "Id");
 
-                                    b2.ToTable("User_PurchaseProducts");
+                                    b2.ToTable("Users_PurchaseProducts");
 
                                     b2.WithOwner()
                                         .HasForeignKey("CartUserId");
@@ -299,9 +298,17 @@ namespace ECommerce.Migrations
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
 
+                            b1.Property<string>("CountryCode")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Number")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
                             b1.HasKey("UserId");
 
-                            b1.ToTable("User");
+                            b1.ToTable("Users");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");

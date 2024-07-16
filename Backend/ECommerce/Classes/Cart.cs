@@ -2,7 +2,7 @@
 {
     public class Cart
     {
-        public int TotalPrice { get; set; }
-        public virtual ICollection<PurchaseProduct> PurchaseProducts { get; set;}
+        public int TotalPrice { get; set; } = 0;
+        public virtual List<PurchaseProduct>? PurchaseProducts { get; set;}
     }
 }

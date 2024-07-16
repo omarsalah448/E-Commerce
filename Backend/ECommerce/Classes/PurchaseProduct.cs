@@ -2,8 +2,8 @@
 {
     public class PurchaseProduct
     {
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public int TotalPrice { get; set; }
+        public required int ProductId { get; set; }
+        public required int Quantity { get; set; }
+        public required int TotalPrice { get; set; }
     }
 }
