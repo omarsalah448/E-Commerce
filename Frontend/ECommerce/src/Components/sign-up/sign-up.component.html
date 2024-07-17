@@ -24,8 +24,10 @@
                     </option>
                   </select>
                   <input formControlName="MobileNumber" type="text" id="form3Example22cg" class="form-control form-control-lg small-font" />
-                  <label class="form-label" for="form3Example22cg">Mobile Number</label>
-                  <!-- <p *ngIf="MobileNumber?.errors || CountryCode?.errors" class="error">Invalid Phone Number</p> -->
+                  <label class="form-label" for="form3Example221cg">Country Code</label>
+                  
+                  <label class="form-label" for="form3Example222cg">Number</label>
+                  <p *ngIf="MobileNumber?.hasError('pattern') " class="error">Invalid Phone Number</p>
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4">
                   <input formControlName="Email" type="email" id="form3Example3cg" class="form-control form-control-lg" />
@@ -55,7 +57,8 @@
 
                 <div class="d-flex justify-content-center">
                   <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    [disabled]="!form.valid">
                     Register
                   </button>
                 </div>
@@ -72,3 +75,6 @@
     </div>
   </div>
 </section>
+
+<button (click)="getFormValidationErrors()">Show errors</button>
+<p>{{form.errors | json}}</p>

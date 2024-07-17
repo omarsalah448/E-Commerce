@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|d:\\my-github\\e-commerce\\backend\\ecommerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|d:\\my-github\\e-commerce\\backend\\ecommerce\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|solutionrelative:repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|d:\\my-github\\e-commerce\\backend\\ecommerce\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|d:\\my-github\\e-commerce\\backend\\ecommerce\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|solutionrelative:repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{245E79A7-6316-4CAD-ABFB-DC3F627ADE65}|ECommerce.csproj|d:\\my-github\\e-commerce\\backend\\ecommerce\\repository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,45 +31,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T20:12:37.819Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repository\\UserRepository.cs",
               "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Repository\\UserRepository.cs",
               "RelativeToolTip": "Repository\\UserRepository.cs",
-              "ViewState": "AQIAAB8AAAAANDMzMzMDwCEAAAAAAAAA",
+              "ViewState": "AQIAACMAAAAAZ2ZmZmYiwGMAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T18:24:56.451Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Repository\\IUserRepository.cs",
               "RelativeDocumentMoniker": "Repository\\IUserRepository.cs",
               "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Repository\\IUserRepository.cs",
               "RelativeToolTip": "Repository\\IUserRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T18:24:23.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Entity.cs",
               "DocumentMoniker": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Database\\Entity.cs",
               "RelativeDocumentMoniker": "Database\\Entity.cs",
@@ -81,8 +64,7 @@
               "RelativeToolTip": "Database\\Entity.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAA8wA0AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T07:08:51.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:08:51.056Z"
             },
             {
               "$type": "Document",
@@ -92,7 +74,7 @@
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAUwBkAAAAiAAAA",
+              "ViewState": "AQIAADYAAAAAmpmZmZklwEUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-15T14:08:57.091Z",
               "EditorCaption": ""

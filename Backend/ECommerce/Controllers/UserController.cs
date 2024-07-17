@@ -38,10 +38,36 @@ namespace ECommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!userRepository.IsEmailUnique(userDTO.Email))
+                {
+                    return BadRequest("This Email is already registered");
+                }
+                if (!userRepository.IsPhoneNumberUnique(userDTO.MobileNumber))
+                {
+                    return BadRequest("This Phone Number is already registered");
+                }
                 int statusCode = userRepository.Post(userDTO);
                 return StatusCode(statusCode);
             }
             return BadRequest(ModelState);
+        }
+
+        [HttpPut]
+        public IActionResult Put(int id, UserDTO userDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                int statusCode = userRepository.Put(id, userDTO);
+                return StatusCode(statusCode);
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            int statusCode = userRepository.Delete(id);
+            return StatusCode(statusCode);
         }
     }
 }

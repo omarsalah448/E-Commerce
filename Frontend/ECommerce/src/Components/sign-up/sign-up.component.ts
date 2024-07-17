@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { User } from '../../../Models/User';
 import { RetypePassword } from '../../Validations/retypePassword.validator';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ import { environment } from '../../environments/environment.development';
 export class SignUpComponent implements OnInit {
   form: FormGroup;
   countryCodes: any;
-  constructor(fb: FormBuilder, private http: HttpClient) {
+  constructor(fb: FormBuilder, private http: HttpClient, private router: Router) {
     let passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
     let nameRegex = "^[a-z ,.'-]+$";
     let emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}";
@@ -25,7 +26,7 @@ export class SignUpComponent implements OnInit {
       LastName: ["", [Validators.required, Validators.pattern(nameRegex)]],
       Email: ["", [Validators.required, Validators.pattern(emailRegex)]],
       CountryCode: ["", [Validators.required]],
-      MobileNumber: ["", [Validators.required, Validators.pattern("[0-9]")]],
+      MobileNumber: ["", [Validators.required, Validators.pattern("\\d{5,}")]],
       Password: ["", [Validators.required, Validators.pattern(passwordRegex)]],
       RetypePassword: ["", [Validators.required]]
     }, { validators: RetypePassword });
@@ -80,7 +81,6 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    alert("in sign up");
     let user: User = new User;
     user.FirstName = this.FirstName?.value;
     user.LastName = this.LastName?.value;
@@ -92,6 +92,17 @@ export class SignUpComponent implements OnInit {
     this.http.post<User>(URL, user).subscribe(user => {
       console.log(user);
     });
-    alert("finished");
+    this.router.navigate(["User-Profile", 1])
+  }
+
+  getFormValidationErrors() {
+    Object.keys(this.form.controls).forEach(key => {
+      const controlErrors = this.form.get(key)?.errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+         console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    });
   }
 }
