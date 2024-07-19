@@ -31,7 +31,7 @@
                 </div>
                 <div data-mdb-input-init class="form-outline mb-4">
                   <input formControlName="Email" type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <label class="form-label" for="form3Example3cg">Email</label>
                   <p *ngIf="Email?.hasError('pattern')" class="error">Invalid Email</p>
                 </div>
 
@@ -62,10 +62,9 @@
                     Register
                   </button>
                 </div>
-
                 <p class="text-center text-muted mt-5 mb-0">
-                  Have already an account?
-                  <a href="#!" class="fw-bold text-body"><u>Login here</u></a>
+                  Already have an account?
+                  <a routerLink="/Login" routerLinkActive="active" class="fw-bold text-body"><u>Login here</u></a>
                 </p>
               </form>
             </div>
@@ -76,5 +75,5 @@
   </div>
 </section>
 
-<button (click)="getFormValidationErrors()">Show errors</button>
-<p>{{form.errors | json}}</p>
+<!-- <button (click)="getFormValidationErrors()">Show errors</button>
+<p>{{form.errors | json}}</p> -->

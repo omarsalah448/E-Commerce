@@ -3,30 +3,35 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { User } from '../../../Models/User';
 import { RetypePassword } from '../../Validations/retypePassword.validator';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { catchError, of, retry, throwError } from 'rxjs';
+import { response } from 'express';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent implements OnInit {
   form: FormGroup;
   countryCodes: any;
-  constructor(fb: FormBuilder, private http: HttpClient, private router: Router) {
+  signUpError: boolean = false;
+  constructor(fb: FormBuilder, private http: HttpClient, 
+              private router: Router) {
     let passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
-    let nameRegex = "^[a-z ,.'-]+$";
+    let nameRegex = "^[A-Za-z ,.'-]+$";
     let emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}";
     this.form = fb.group({
       FirstName: ["", [Validators.required, Validators.pattern(nameRegex)]],
       LastName: ["", [Validators.required, Validators.pattern(nameRegex)]],
       Email: ["", [Validators.required, Validators.pattern(emailRegex)]],
       CountryCode: ["", [Validators.required]],
-      MobileNumber: ["", [Validators.required, Validators.pattern("\\d{5,}")]],
+      // MobileNumber: ["", [Validators.required, Validators.pattern("\\d{5,}")]],
+      MobileNumber: ["", [Validators.required, Validators.pattern(".*")]],
       Password: ["", [Validators.required, Validators.pattern(passwordRegex)]],
       RetypePassword: ["", [Validators.required]]
     }, { validators: RetypePassword });
@@ -81,6 +86,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
+    this.signUpError = false;
     let user: User = new User;
     user.FirstName = this.FirstName?.value;
     user.LastName = this.LastName?.value;
@@ -89,10 +95,24 @@ export class SignUpComponent implements OnInit {
     user.MobileNumber = this.MobileNumber?.value;
     user.Password = this.Password?.value;
     let URL: string = `${environment.URL}/api/User`;
-    this.http.post<User>(URL, user).subscribe(user => {
-      console.log(user);
+    this.http.post<User>(URL, user, {observe: 'response'}).pipe(
+      retry(3),
+      catchError(error => {
+        console.error('Error occurred here:', error);
+        this.handleError;
+        return of(null);
+      })
+    ).subscribe(response => {
+      console.log('Response here:', response);
+      if (response?.status == 200 || response?.status == 201){
+        this.router.navigate(["User-Profile", 1])
+        alert("Yeeeeeeeeeeeeeeeees" + this.signUpError);}
+      else{
+        alert("Nooooooooooo" + this.signUpError)};
     });
-    this.router.navigate(["User-Profile", 1])
+    // if (!this.signUpError)
+    //   this.router.navigate(["User-Profile", 1])
+    // alert(this.signUpError);
   }
 
   getFormValidationErrors() {
@@ -104,5 +124,21 @@ export class SignUpComponent implements OnInit {
         });
       }
     });
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+      alert('An error occurred:' + error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+        alert(`Backend returned code ${error.status}, body was: ` + error.error)
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

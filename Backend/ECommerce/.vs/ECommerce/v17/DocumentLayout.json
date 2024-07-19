@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "Repository\\UserRepository.cs",
               "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Repository\\UserRepository.cs",
               "RelativeToolTip": "Repository\\UserRepository.cs",
-              "ViewState": "AQIAACMAAAAAZ2ZmZmYiwGMAAAAtAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGMAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T18:24:56.451Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "Repository\\IUserRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T18:24:23.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T18:24:23.754Z"
             },
             {
               "$type": "Document",
@@ -74,10 +73,9 @@
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "D:\\My-Github\\E-Commerce\\Backend\\ECommerce\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAADYAAAAAmpmZmZklwEUAAAAqAAAA",
+              "ViewState": "AQIAABsAAADAMzMzMzMrwDEAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T14:08:57.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T14:08:57.091Z"
             }
           ]
         }
