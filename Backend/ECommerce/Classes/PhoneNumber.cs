@@ -2,7 +2,7 @@
 {
     public class PhoneNumber
     {
-        public required string CountryCode { get; set; }
-        public required string Number { get; set; }
+        public string CountryCode { get; set; } = string.Empty;
+        public string Number { get; set; } = string.Empty;
     }
 }

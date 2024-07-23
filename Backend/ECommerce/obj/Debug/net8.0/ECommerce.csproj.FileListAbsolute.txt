@@ -273,3 +273,9 @@ D:\My-Github\E-Commerce\Backend\ECommerce\obj\Debug\net8.0\refint\ECommerce.dll
 D:\My-Github\E-Commerce\Backend\ECommerce\obj\Debug\net8.0\ECommerce.pdb
 D:\My-Github\E-Commerce\Backend\ECommerce\obj\Debug\net8.0\ECommerce.genruntimeconfig.cache
 D:\My-Github\E-Commerce\Backend\ECommerce\obj\Debug\net8.0\ref\ECommerce.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

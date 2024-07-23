@@ -1,15 +1,25 @@
 ﻿using ECommerce.Classes;
 using ECommerce.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.DTO
 {
     public class UserDTO
     {
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
-        public required string Email { get; set; }
-        public string? CountryCode { get; set; }
-        public string? MobileNumber { get; set; }
-        public required string Password { get; set; }
+        [Required]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+
+        [Phone]
+        public string? PhoneNumber { get; set; }
+
+        [Required]
+        public string Password { get; set; } = string.Empty;
     }
 }

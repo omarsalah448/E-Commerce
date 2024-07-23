@@ -2,8 +2,8 @@
 {
     public class Review
     {
-        public required string UserId { get; set; }
+        public int UserId { get; set; }
         public string? Description { get; set; }
-        public required int Rating { get; set; }
+        public int Rating { get; set; }
     }
 }

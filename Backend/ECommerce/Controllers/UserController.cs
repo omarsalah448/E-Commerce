@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace ECommerce.Controllers
+namespace ECommerce.Controllers 
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,9 +23,9 @@ namespace ECommerce.Controllers
             this.userRepository = userRepository;
         }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            List<User> users = this.userRepository.Get();
+            List<ApplicationUser>? users = await this.userRepository.GetAsync();
             if (users == null || users.Count == 0)
             {
                 return NotFound("No Users Found");
@@ -33,41 +33,43 @@ namespace ECommerce.Controllers
             return Ok(users);
         }
 
-        [HttpPost]
-        public IActionResult Post(UserDTO userDTO)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserDTO userDTO)
         {
             if (ModelState.IsValid)
             {
-                if (!userRepository.IsEmailUnique(userDTO.Email))
+                bool isEmailUnique = await userRepository.IsEmailUniqueAsync(userDTO.Email);
+                if (!isEmailUnique)
                 {
                     return BadRequest("This Email is already registered");
                 }
-                if (!userRepository.IsPhoneNumberUnique(userDTO.MobileNumber))
+                bool isPhoneNumberUnique = await userRepository.IsPhoneNumberUniqueAsync(userDTO.PhoneNumber);
+                if (!isPhoneNumberUnique)
                 {
                     return BadRequest("This Phone Number is already registered");
                 }
-                int statusCode = userRepository.Post(userDTO);
+                int statusCode = await userRepository.AddUserAsync(userDTO);
                 return StatusCode(statusCode);
             }
             return BadRequest(ModelState);
         }
 
-        [HttpPut]
-        public IActionResult Put(int id, UserDTO userDTO)
-        {
-            if (ModelState.IsValid)
-            {
-                int statusCode = userRepository.Put(id, userDTO);
-                return StatusCode(statusCode);
-            }
-            return BadRequest(ModelState);
-        }
+        //[HttpPut]
+        //public IActionResult Put(int id, UserDTO userDTO)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        int statusCode = userRepository.Put(id, userDTO);
+        //        return StatusCode(statusCode);
+        //    }
+        //    return BadRequest(ModelState);
+        //}
 
-        [HttpDelete]
-        public IActionResult Delete(int id)
-        {
-            int statusCode = userRepository.Delete(id);
-            return StatusCode(statusCode);
-        }
+        //[HttpDelete]
+        //public IActionResult Delete(int id)
+        //{
+        //    int statusCode = userRepository.Delete(id);
+        //    return StatusCode(statusCode);
+        //}
     }
 }

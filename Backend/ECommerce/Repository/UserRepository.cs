@@ -2,43 +2,44 @@
 using ECommerce.Database;
 using ECommerce.DTO;
 using ECommerce.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Repository
 {
     public class UserRepository : IUserRepository
     {
         private readonly Entity context;
-        public UserRepository(Entity context) {
+        private readonly UserManager<ApplicationUser> userManager;
+        public UserRepository(Entity context, UserManager<ApplicationUser> userManager) {
             this.context = context;
+            this.userManager = userManager;
         }
-        public List<User> Get()
+        public async Task<List<ApplicationUser>?> GetAsync()
         {
             try
             {
-                return context.Users.ToList();
+                return await context.Users.ToListAsync();
             }
             catch (Exception)
             {
-                return new List<User>();
+                return null;
             }
         }
 
-        public User? GetById(int id)
+        public async Task<ApplicationUser?> GetByIdAsync(int id)
         {
-                return context.Users.FirstOrDefault(u => u.Id == id);
+            return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public bool IsEmailUnique(string email)
+        public async Task<bool> IsEmailUniqueAsync(string email)
         {
             if (email is null)
             {
                 return true;
             }
-            User? user = context.Users.FirstOrDefault(u => u.Email == email);
+            ApplicationUser? user = await context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user is null)
             {
                 return true;
@@ -46,13 +47,13 @@ namespace ECommerce.Repository
             return false;
         }
 
-        public bool IsPhoneNumberUnique(string phoneNumber)
+        public async Task<bool> IsPhoneNumberUniqueAsync(string phoneNumber)
         {
             if (phoneNumber is null)
             {
                 return true;
             }
-            User? user = context.Users.FirstOrDefault(u => u.PhoneNumber.Number == phoneNumber);
+            ApplicationUser? user = await context.Users.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             if (user is null)
             {
                 return true;
@@ -60,28 +61,23 @@ namespace ECommerce.Repository
             return false;
         }
 
-        public int Post(UserDTO userDTO)
+        public async Task<int> AddUserAsync(UserDTO userDTO)
         {
-            User user = new User
+            ApplicationUser user = new ApplicationUser
             {
                 FirstName = userDTO.FirstName,
                 LastName = userDTO.LastName,
                 Email = userDTO.Email,
-                Password = userDTO.Password
+                UserName = userDTO.Email,
+                PhoneNumber = userDTO.PhoneNumber,
             };
-            if (userDTO.CountryCode is not null && userDTO.MobileNumber is not null)
-            {
-                user.PhoneNumber = new PhoneNumber
-                {
-                    CountryCode = userDTO.CountryCode,
-                    Number = userDTO.MobileNumber
-                };
-            }
             try
             {
-                context.Users.Add(user);
-                context.SaveChanges();
-                return StatusCodes.Status201Created;
+                IdentityResult result = await userManager.CreateAsync(user, userDTO.Password);
+                if (result.Succeeded)
+                    return StatusCodes.Status201Created;
+                else
+                    return StatusCodes.Status400BadRequest;
             }
             catch
             {
@@ -89,38 +85,30 @@ namespace ECommerce.Repository
             }
         }
 
-        public int Put(int id, UserDTO userDTO)
-        {
-            User? user = GetById(id);
-            if (user == null)
-            {
-                return StatusCodes.Status404NotFound;
-            }
-            user.FirstName = userDTO.FirstName;
-            user.LastName = userDTO.LastName;
-            user.Email = userDTO.Email;
-            user.Password = userDTO.Password;
-            if (userDTO.CountryCode is not null && userDTO.MobileNumber is not null){
-                user.PhoneNumber = new PhoneNumber
-                {
-                    CountryCode = userDTO.CountryCode,
-                    Number = userDTO.MobileNumber
-                };
-            }
-            context.SaveChanges();
-            return StatusCodes.Status200OK;
-        }
+        //public int Put(int id, UserDTO userDTO)
+        //{
+        //    ApplicationUser? user = GetByIdAsync(id);
+        //    if (user == null)
+        //    {
+        //        return StatusCodes.Status404NotFound;
+        //    }
+        //    user.FirstName = userDTO.FirstName;
+        //    user.LastName = userDTO.LastName;
+        //    user.Email = userDTO.Email;
+        //    context.SaveChanges();
+        //    return StatusCodes.Status200OK;
+        //}
 
-        public int Delete(int id)
-        {
-            User? user = GetById(id);
-            if (user == null)
-            {
-                return StatusCodes.Status404NotFound;
-            }
-            context.Users.Remove(user);
-            context.SaveChanges();
-            return StatusCodes.Status200OK;
-        }
+        //public int Delete(int id)
+        //{
+        //    ApplicationUser? user = GetByIdAsync(id);
+        //    if (user == null)
+        //    {
+        //        return StatusCodes.Status404NotFound;
+        //    }
+        //    context.Users.Remove(user);
+        //    context.SaveChanges();
+        //    return StatusCodes.Status200OK;
+        //}
     }
 }
