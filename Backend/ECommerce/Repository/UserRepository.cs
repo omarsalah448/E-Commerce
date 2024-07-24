@@ -2,6 +2,7 @@
 using ECommerce.Database;
 using ECommerce.DTO;
 using ECommerce.Models;
+using ECommerce.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,15 @@ namespace ECommerce.Repository
     {
         private readonly Entity context;
         private readonly UserManager<ApplicationUser> userManager;
-        public UserRepository(Entity context, UserManager<ApplicationUser> userManager) {
+        private readonly JwtService jwtService;
+        public UserRepository(
+            Entity context, 
+            UserManager<ApplicationUser> userManager,
+            JwtService jwtService
+            ) {
             this.context = context;
             this.userManager = userManager;
+            this.jwtService = jwtService;
         }
         public async Task<List<ApplicationUser>?> GetAsync()
         {
@@ -83,6 +90,21 @@ namespace ECommerce.Repository
             {
                 return StatusCodes.Status500InternalServerError;
             }
+        }
+
+        public async Task<string>? LoginAsync(LoginUserDTO loginUserDTO)
+        {
+            ApplicationUser? user = await userManager.FindByEmailAsync(loginUserDTO.Email);
+            if (user is null)
+                return null;
+            bool success = await userManager.CheckPasswordAsync(user, loginUserDTO.Password);
+            if (success)
+            {
+                var token = await jwtService.createAsync(user);
+                return token;
+            }
+            return null;
+
         }
 
         //public int Put(int id, UserDTO userDTO)

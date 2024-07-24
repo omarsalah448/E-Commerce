@@ -279,3 +279,4 @@ D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.AspNetCore.
 D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\My-Github\E-Commerce\Backend\ECommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

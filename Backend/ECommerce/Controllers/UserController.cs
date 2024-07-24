@@ -3,6 +3,7 @@ using ECommerce.Database;
 using ECommerce.DTO;
 using ECommerce.Models;
 using ECommerce.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace ECommerce.Controllers
             this.userRepository = userRepository;
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
         {
             List<ApplicationUser>? users = await this.userRepository.GetAsync();
@@ -52,6 +54,17 @@ namespace ECommerce.Controllers
                 return StatusCode(statusCode);
             }
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginUserDTO loginUserDTO)
+        {
+            if (ModelState.IsValid) { 
+            string? token = await userRepository.LoginAsync(loginUserDTO);
+                if (!string.IsNullOrEmpty(token))
+                    return Ok(token);
+            }
+            return Unauthorized("Invalid User Credentials");
         }
 
         //[HttpPut]

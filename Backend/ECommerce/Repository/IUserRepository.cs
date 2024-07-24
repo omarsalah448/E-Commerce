@@ -10,6 +10,7 @@ namespace ECommerce.Repository
         public Task<bool> IsEmailUniqueAsync(string email);
         public Task<bool> IsPhoneNumberUniqueAsync(string phoneNumber);
         public Task<int> AddUserAsync(UserDTO userDTO);
+        public Task<string>? LoginAsync(LoginUserDTO loginUserDTO);
         //public int Put(int id, UserDTO userDTO);
         //public int Delete(int id);
     }
